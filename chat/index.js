@@ -17,7 +17,7 @@ io.on('connection', function(socket){
   });
 });
 
-/*  connected & disconnected
+/* --> connected & disconnected
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('disconnect', function(){
@@ -25,6 +25,23 @@ io.on('connection', function(socket){
   });
 });
 */
+
+//In order to send an event to everyone, Socket.IO gives us the io.emit:
+io.emit('some event', { for: 'everyone' });
+
+//If you want to send a message to everyone except for a certain socket, we have the broadcast flag:
+io.on('connection', function(socket){
+  socket.broadcast.emit('hi');
+});
+
+//In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+
 
 //We make the http server listen on port 3000.
 http.listen(3000, function(){
