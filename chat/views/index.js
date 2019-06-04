@@ -3,6 +3,8 @@ let app = require('express')();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
+
+
 //We define a route handler / that gets called when we hit our website home.
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -41,7 +43,7 @@ io.on('connection', function(socket){
   });
 });
 
-
+//res.end(); 
 
 //We make the http server listen on port 3000.
 http.listen(3000, function(){

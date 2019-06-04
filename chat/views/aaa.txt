@@ -1,0 +1,12 @@
+fs.readFile('./index.js', function read(err, data) {
+    if (err) { // err är null om inget fel inträffat
+        throw err;
+    } // else
+    console.log(data.toString()); // ger en buffer om vi inte kör toString på
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end(data); // hello.txt
+    // kan även skrivas:
+        // res.write(data);
+        // res.end();
+  });

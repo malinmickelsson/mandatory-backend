@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs');
 
 //MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
@@ -15,8 +16,7 @@ app.get('/', function (req, res) {
         title: 'My login', 
         message: 'Login:', 
         pusername: 'Username',  
-        ppass: 'Password',
-        prevusers: 'Previous users:',
+        //prevusers: 'Previous users:',
         users: users,//användare som loggat in,
      })
         
@@ -29,14 +29,33 @@ app.post('/user', (req, res) => {
 
     let user = {
         username: body.username,
-        password: body.password,
       };
 
       users.push(user);
 
-      res.end('Congratulations! You successfully logged in!');
-      console.log("outside users: " + users);
+      let jsonData = JSON.stringify(users);
+
+    
+    fs.writeFile("usernames.txt", jsonData, function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+
+      
+      res.end( "inloggad"/* starta index.js */);
+      console.log("users: " + users);
 });
 
 
-app.listen(3000)
+app.listen(3001)
+
+
+
+//--> i index.pug:  // lista med användare
+ /*
+            p= prevusers
+            ul
+            each val in users
+                li= val.username
+            */
