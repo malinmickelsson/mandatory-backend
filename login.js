@@ -76,11 +76,11 @@ app.post('/chatRoom', function (req, res) {
 });
 
 
-app.delete('/chatRoom', function (req, res) {
+app.delete('/chatRoom/:id', function (req, res) {
   const chatroom = req.body
+  let id = req.params.id;
   
-
-  res.end("chatroom-succes")
+  res.end("chatroom-deleted")
 });
 
 //-----------------------------------

@@ -2,6 +2,9 @@ import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //import openSocket from 'socket.io-client';
 import axios from 'axios';
+import Moment from 'react-moment';
+import styles from './styles.module.css';
+
 
 let io = require('socket.io-client');
 let socket = io("http://localhost:3001");
