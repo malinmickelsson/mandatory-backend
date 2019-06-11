@@ -5,13 +5,20 @@ import styles from './styles.module.css';
 
 const Login = props => {
   const [username, setUsername] = useState("");
+/*
+  if (username === null) {
+    username: "Anonymous";
+  }
+*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log("username: " + username);
     props.setUsername(username);
+
     axios.post('/users', {
-      username: username,
+      username: username,      
     })
       .then(function (response) {
         console.log("login-succes!")

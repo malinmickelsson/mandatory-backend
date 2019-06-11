@@ -38,13 +38,19 @@ const Home = () => {
   }
 
 
-  const deleteRoom = (e) => {
-    e.preventDefault();
-    axios.delete('/chatroom', {
-      id: chatroom,
+  const deleteRoom = data => {
+    axios.delete((`chatroom/${data.id}`), {
+      
     })
       .then(function (response) {
         alert('Room Deleted')
+        console.log(data.id);
+        console.log(data.id);
+        console.log(data.id);
+        
+        console.log(data);
+        console.log(data);
+        console.log(data);
       })
       .catch(function (error) {
         console.log(error);
@@ -70,12 +76,14 @@ const Home = () => {
       </div>
       <div className="show">
         <h4>Rooms</h4>
+        <br></br>
         <ul>
-          {rooms.map(data => <li><Link to={`/chatroom?id=${data}`} > {data} </Link> <button onClick={deleteRoom}> x </button> </li>)}
+          {rooms.map(data => <li><Link to={`/chatroom?id=${data}`} > {data} </Link> <button value={data} onClick={deleteRoom}> x </button> </li>)}
         </ul>
       </div> 
+      <br></br>
         <div className="links">
-          <Link to="/Login" className="login">Login</Link>
+          <Link to="/Login" className="login">Back to LOGIN</Link>
         </div>
     </div>
   );

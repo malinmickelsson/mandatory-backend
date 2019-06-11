@@ -2,9 +2,7 @@ import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //import openSocket from 'socket.io-client';
 import axios from 'axios';
-import Moment from 'react-moment';
 import styles from './styles.module.css';
-
 
 let io = require('socket.io-client');
 let socket = io("http://localhost:3001");
@@ -13,7 +11,7 @@ const ChatRoom = (props) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const username = props.username;
-  
+
   useEffect(() => {
     socket.on('data', value => {
       setMessages(messages => {
@@ -42,7 +40,12 @@ const ChatRoom = (props) => {
           </form>
 
           <div className="chatroom">
-            {messages.map(message => <p>{message.content}  <span style={{ fontSize: "12px", color: "f8f8f8" }}> message by </span>  {message.username} </p>)}
+            {messages.map(message => 
+              <ul>
+              <li className={styles.username}> {message.username}  
+              <span className={styles.timestamp}>timestamp </span>   
+              <p className={styles.message}>{message.content}</p></li>
+              </ul>)}
             <br></br>
           </div>
         </div>
@@ -50,4 +53,4 @@ const ChatRoom = (props) => {
     </div>
   );
 }
-export default ChatRoom
+export default ChatRoom 
