@@ -40,14 +40,14 @@ const ChatRoom = (props) => {
   }
 //---------------------------------
   return (
-    <div className="container">
+    <div className={styles.chatRoom} className="container">
       <div className="chatroom-container">
         <div className="chat-form">
-          <form onSubmit={(e) => typeMessage(e)}>
-            <input type="text" value={message} 
+          <form className={styles.form} onSubmit={(e) => typeMessage(e)}>
+            <input className={styles.input} type="text" value={message} 
                    onChange={(e) => setMessage(e.target.value)} 
                    placeholder="text..." />
-            <button type="submit" className="submit-btn">Send</button>
+            <button className={styles.submitBTN} type="submit" className="submit-btn">Send</button>
           </form>
 
           <div className="chatroom">

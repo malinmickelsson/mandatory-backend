@@ -1,45 +1,117 @@
 /* <div className={styles.metadata}> */         
 
-* { 
+body { 
+    font: 13px Helvetica, Arial; 
+    background-color: #a4a2a2;
     margin: 0; 
     padding: 0; 
     box-sizing: 
-    border-box; 
+    border-box;
 }
-body { 
-    font: 13px Helvetica, Arial; 
+/* unvisited link */
+a:link {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
+  a:active {
+    color: black;
+  }
+li {
+    list-style-type: none;
 }
-form { 
-    background: #000; 
+input {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;  
+}
+button {
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;  
+}
+/*=============== LOGIN ===============*/
+.loginWindow{ 
+    width: 300px;
+    height: 520px;
+    padding: 40px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background: white;                           
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, 0%);
+  }
+  
+  /*=============== CHATROOMWIINDOW ===============*/
+  .chatroomWindow{ 
+    width: 300px;
+    height: 520px;
+    padding: 40px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background: white;                           
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, 0%);
+  }
+  /*=============== CHATROOMWIINDOW ===============*/
+  /*
+  .chatRoom{ 
+    width: 300px;
+    height: 520px;
+    padding: 40px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background: white;                           
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, 0%);
+  }
+  */
+.form { 
+    background: grey; 
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
     padding: 3px; 
     position: fixed; 
     bottom: 0; 
-    width: 60%; 
+    width: 80%;
+    margin: 20px;
 }
-form input { 
+.form .input { 
     border: 0; 
     padding: 10px; 
     width: 90%; 
     margin-right: .5%; 
-
 }
-form button { 
+.form .submitBTN { 
     width: 9%; 
     background: rgb(130, 224, 255); 
     border: none; 
     padding: 10px; 
+    width: 100%;
 }
 #messages { 
     list-style-type: none; 
-    margin: 0; 
+    margin: 50px; 
     padding: 0; 
+    background: #fff;
 }
 #messages li { 
     padding: 5px 10px; 
     width: 60%;
 }
 #messages li:nth-child(odd) { 
-    background: #eee; 
+    background: rgb(238, 238, 238); 
 }
 /*___________________________________*/
 .username {

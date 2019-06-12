@@ -50,9 +50,9 @@ const Home = () => {
         console.log(error);
       });
   }
-
+   
   return (
-    <div className="container">
+    <div className={styles.chatroomWindow}>
       <div className="Page">
         <h2>Home</h2>
         <div className="create">
@@ -69,8 +69,7 @@ const Home = () => {
 
       </div>
       <div className="show">
-        <h4>Rooms</h4>
-        <br></br>
+        <h4>Current rooms</h4>
         <ul>
           {rooms.map(data => <li key={data}><Link to={`/chatroom?id=${data}`} > {data} </Link> <button value={data} onClick={deleteRoom}> x </button> </li>)}
         </ul>

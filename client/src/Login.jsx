@@ -33,8 +33,7 @@ const Login = props => {
   }
 
   return (
-    <div className="container">
-      <Link to="/">Back</Link>
+    <div className={styles.loginWindow}>
       <div className="page">
         <h2>Login</h2>
       </div>
@@ -44,9 +43,11 @@ const Login = props => {
           onChange={(e) =>
           setUsername(e.target.value)}
           placeholder="Username..." />
-        <br></br>
         <button type="submit" className="submit-btn">Login</button>
+        <br></br>
+        <h3> Welcome: {username}</h3> 
       </form>
+      <Link to="/">Go choose a chatroom</Link>
     </div>
   )
 }
