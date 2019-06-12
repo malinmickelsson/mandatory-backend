@@ -1,7 +1,4 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-//import openSocket from 'socket.io-client';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 import Moment from 'moment';
 
@@ -24,28 +21,41 @@ const ChatRoom = (props) => {
       socket.off('data');
     };
   }, []);
-
+ 
   const typeMessage = (e) => {
     e.preventDefault();
     socket.emit("message", { username, content: message });
   }
 
+  //TIMESTAMP
+  //---------------------------------
+  const date = new Date();
 
+  function timeCheck(time) {
+    if (time === undefined) {
+      return "timestamp not found";
+    } else {
+      return Moment(time, "YYYY-MM-DDThh:mm:ssZ").fromNow()
+    }
+  }
+//---------------------------------
   return (
     <div className="container">
       <div className="chatroom-container">
         <div className="chat-form">
           <form onSubmit={(e) => typeMessage(e)}>
-            <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="text..." />
+            <input type="text" value={message} 
+                   onChange={(e) => setMessage(e.target.value)} 
+                   placeholder="text..." />
             <button type="submit" className="submit-btn">Send</button>
           </form>
 
           <div className="chatroom">
             {messages.map(message => 
-              <ul>
-              <li className={styles.username}> {message.username === username ? "Anonymous" : null}  
-              <span className={styles.timestamp}>timestamp </span>   
-              <p className={styles.message}>{message.content}</p></li>
+              <ul id="messages">
+                <li className={styles.username}> {message.username}  
+                  <span className={styles.timestamp}>{timeCheck(date)}</span>   
+                  <p className={styles.message}>{message.content}</p></li>
               </ul>)}
             <br></br>
           </div>

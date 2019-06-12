@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, Redirect } from 'react';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 
 const Login = props => {
   const [username, setUsername] = useState("");
-/*
-  if (username === null) {
-    username: "Anonymous";
-  }
-*/
 
+  /*
+  if (username !== null) {
+    return (
+      <Redirect to="/Home" />
+    )
+  }
+  */
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -20,12 +23,13 @@ const Login = props => {
     axios.post('/users', {
       username: username,      
     })
-      .then(function (response) {
+      .then(function (response) { 
         console.log("login-succes!")
       })
       .catch(function (error) {
         console.log(error);
       });
+
   }
 
   return (

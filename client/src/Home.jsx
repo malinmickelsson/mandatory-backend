@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
@@ -44,13 +44,7 @@ const Home = () => {
     })
       .then(function (response) {
         alert('Room Deleted')
-        console.log(data.id);
-        console.log(data.id);
-        console.log(data.id);
         
-        console.log(data);
-        console.log(data);
-        console.log(data);
       })
       .catch(function (error) {
         console.log(error);
@@ -78,7 +72,7 @@ const Home = () => {
         <h4>Rooms</h4>
         <br></br>
         <ul>
-          {rooms.map(data => <li><Link to={`/chatroom?id=${data}`} > {data} </Link> <button value={data} onClick={deleteRoom}> x </button> </li>)}
+          {rooms.map(data => <li key={data}><Link to={`/chatroom?id=${data}`} > {data} </Link> <button value={data} onClick={deleteRoom}> x </button> </li>)}
         </ul>
       </div> 
       <br></br>

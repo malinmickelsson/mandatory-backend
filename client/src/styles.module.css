@@ -43,10 +43,13 @@ form button {
 }
 /*___________________________________*/
 .username {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
 }
 .timestamp {
     font-size: 10px;
     color: grey;
+}
+.message {
+    font-size: 20px;
 }
