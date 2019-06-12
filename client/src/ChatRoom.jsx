@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import openSocket from 'socket.io-client';
 import axios from 'axios';
 import styles from './styles.module.css';
+import Moment from 'moment';
 
 let io = require('socket.io-client');
 let socket = io("http://localhost:3001");
@@ -42,7 +43,7 @@ const ChatRoom = (props) => {
           <div className="chatroom">
             {messages.map(message => 
               <ul>
-              <li className={styles.username}> {message.username}  
+              <li className={styles.username}> {message.username === username ? "Anonymous" : null}  
               <span className={styles.timestamp}>timestamp </span>   
               <p className={styles.message}>{message.content}</p></li>
               </ul>)}
