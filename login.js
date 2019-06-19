@@ -14,6 +14,7 @@ app.use(express.json());
 
 let users = require("./usernames.json");
 const chatrooms = require("./chatrooms.json");
+//const conversations = require("./conversation.json");         <-- funkar inte?
 
 
 
@@ -88,6 +89,38 @@ app.delete('/chatRoom/:id', function (req, res) {
 
 
 
+/*
+
+// CONVERSATION                     <-- funkar inte?
+//-----------------------------------
+app.get('/conversation', function (req, res) {
+  res.send(conversations);
+});
+
+
+app.post('/conversation', function (req, res) {
+  const conversation = req.body
+  console.log(conversation);
+  conversations.push(conversation.id);
+  console.log("pushed: " + conversation);
+
+  let jsonConversation = conversations;
+  // let jsonConversation = JSON.stringify(conversations); 
+
+  fs.writeFile("conversations.json", jsonConversation, function (err) {
+    if (err) {
+      console.log("fel på conversation");
+    }
+  });
+
+  res.end("conversation-succes")
+});
+
+//-----------------------------------
+
+*/
+
+
 
 
 // SOCKET.IO
@@ -119,5 +152,6 @@ io.on('connection', function (socket) {
   });
 });
 
-
+// PORT
+//-----------------------------------
 http.listen(port, () => console.log(`listening on port ${port}!`))

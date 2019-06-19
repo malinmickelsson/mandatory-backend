@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './Home.jsx';
 import Login from './Login.jsx';
 import ChatRoom from './ChatRoom';
-import NotFound from './NotFound'; // WORKS!
-import styles from './styles.module.css';
+import NotFound from './NotFound'; 
+
 
 class App extends React.Component {
   state = {

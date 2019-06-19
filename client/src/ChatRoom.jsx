@@ -40,7 +40,7 @@ const ChatRoom = (props) => {
   }
 //---------------------------------
   return (
-    <div className={styles.chatRoom} className="container">
+    <div className="container">
       <div className="chatroom-container">
         <div className="chat-form">
           <form className={styles.form} onSubmit={(e) => typeMessage(e)}>
