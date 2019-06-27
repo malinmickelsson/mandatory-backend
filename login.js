@@ -18,6 +18,7 @@ let messages = require("./messages.json");
 
 
 
+
 // LOGIN
 //-----------------------------------
 app.post('/users', (req, res) => {
@@ -112,20 +113,18 @@ io.on('connection', function (socket) {
     //spara meddelandena här:
     //-----------------------------------
     console.log(msg);
-    messages.push(msg.id);
-    console.log("pushed: " + msg);
+    messages.push(msg.content);
+    console.log("pushed: " + msg);   // TypeError: messages.push is not a function
     console.log(messages);
 
-    //let jsonMessage = messages;
-    let jsonMessage = JSON.stringify(messages); 
+    //let jsonMessages = messages;
+    let jsonMessages = JSON.stringify(messages); 
 
     fs.writeFile("messages.json", jsonMessages, function (err) {
       if (err) {
         console.log(err);
       }
-    });
-  
-    res.end("messages saved in file")
+    });    
     
   });
 });
