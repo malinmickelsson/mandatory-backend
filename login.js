@@ -7,16 +7,13 @@ let fs = require('fs');
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
-
-
 //MIDDLEWARE
 app.use(express.json());
 
+
 let users = require("./usernames.json");
 const chatrooms = require("./chatrooms.json");
-//const conversations = require("./conversation.json");         <-- funkar inte?
-
-
+//let messages = require("./messages.json");  <-- denna crashar?
 
 
 
@@ -41,8 +38,7 @@ app.post('/users', (req, res) => {
     }
   });
 
-  res.end("logged in as : " + user.username);
-  console.log("users: " + users);
+  res.end();
 });
 
 //-----------------------------------
@@ -79,7 +75,7 @@ app.post('/chatRoom', function (req, res) {
 
 app.delete('/chatRoom/:id', function (req, res) {
 
-  let id = req.params.id;
+  //let id = req.params.id;
 
   res.end("chatroom-deleted")
 });
@@ -89,50 +85,14 @@ app.delete('/chatRoom/:id', function (req, res) {
 
 
 
-/*
-
-// CONVERSATION                     <-- funkar inte?
-//-----------------------------------
-app.get('/conversation', function (req, res) {
-  res.send(conversations);
-});
-
-
-app.post('/conversation', function (req, res) {
-  const conversation = req.body
-  console.log(conversation);
-  conversations.push(conversation.id);
-  console.log("pushed: " + conversation);
-
-  let jsonConversation = conversations;
-  // let jsonConversation = JSON.stringify(conversations); 
-
-  fs.writeFile("conversations.json", jsonConversation, function (err) {
-    if (err) {
-      console.log("fel på conversation");
-    }
-  });
-
-  res.end("conversation-succes")
-});
-
-//-----------------------------------
-
-*/
-
-
 
 
 // SOCKET.IO
 //-----------------------------------
-
-//We define a route handler / that gets called when we hit our website home.
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/ChatRoom.jsx');
 });
 
-//Notice that I initialize a new instance of socket.io by passing the http (the HTTP server) object. 
-//Then I listen on the connection event for incoming sockets, and I log it to the console.
 io.on('connection', function (socket) {
   console.log('a user connected');
   socket.on('chat message', function (msg) {
@@ -144,13 +104,36 @@ io.on('connection', function (socket) {
 });
 
 
-//In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
 io.on('connection', function (socket) {
   socket.on('message', function (msg) {
     console.log(msg);
     io.emit('data', msg);
   });
+
+/*
+    //spara meddelandena här:
+    //-----------------------------------
+    console.log(msg);
+    messages.push(msg.id);
+    console.log("pushed: " + msg);
+    console.log(messages);
+
+    //let jsonMessage = messages;
+    let jsonMessage = JSON.stringify(messages); 
+
+    fs.writeFile("messages.json", jsonMessages, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  
+    res.end("messages saved in file")
+
+    */
+
+
 });
+
 
 // PORT
 //-----------------------------------
