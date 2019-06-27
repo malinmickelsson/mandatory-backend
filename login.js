@@ -13,7 +13,7 @@ app.use(express.json());
 
 let users = require("./usernames.json");
 const chatrooms = require("./chatrooms.json");
-//let messages = require("./messages.json");  <-- denna crashar?
+let messages = require("./messages.json");
 
 
 
@@ -108,9 +108,7 @@ io.on('connection', function (socket) {
   socket.on('message', function (msg) {
     console.log(msg);
     io.emit('data', msg);
-  });
 
-/*
     //spara meddelandena här:
     //-----------------------------------
     console.log(msg);
@@ -128,10 +126,8 @@ io.on('connection', function (socket) {
     });
   
     res.end("messages saved in file")
-
-    */
-
-
+    
+  });
 });
 
 
